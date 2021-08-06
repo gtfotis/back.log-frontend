@@ -21,7 +21,8 @@ const GameList = () => {
   }
 
   const _fetchData = async () => {
-    const url = `https://api.rawg.io/api/games?key=a2ca04aa98be4f3eb27685b04c96df2b&page=${randomPage()}`;
+    const api_key = process.env.REACT_APP_API_KEY;
+    const url = `https://api.rawg.io/api/games?key=${api_key}&page=${randomPage()}`;
     const res = await fetch(url).then((res) => res.json());
     console.log("response from API is: ", res.results);
     return res.results;
