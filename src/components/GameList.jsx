@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Route, Link, useHistory } from "react-router-dom";
-// import GamePage from "/GamePage";
+import GameDetails from "./GameDetails";
 import "../App.css";
 
 const GameList = () => {
@@ -14,9 +14,14 @@ const GameList = () => {
     })();
   }, [setGames]);
 
+  function randomPage(min, max) {
+    min = Math.ceil(1);
+    max = Math.floor(29622);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
   const _fetchData = async () => {
-    const url =
-      "https://api.rawg.io/api/games?key=a2ca04aa98be4f3eb27685b04c96df2b&page=1";
+    const url = `https://api.rawg.io/api/games?key=a2ca04aa98be4f3eb27685b04c96df2b&page=${randomPage()}`;
     const res = await fetch(url).then((res) => res.json());
     console.log("response from API is: ", res.results);
     return res.results;
@@ -37,7 +42,7 @@ const GameList = () => {
               </ul>
             </Route>
             <Route path="/:game_slug">
-              {/* <GamePage /> */}
+              <GameDetails />
               <button onClick={() => history.goBack()}>Back</button>
             </Route>
           </div>
