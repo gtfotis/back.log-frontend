@@ -16,7 +16,10 @@ import {
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Home from "./components/Home";
 import GameList from "./components/GameList";
+import NavBar from "./components/NavBar";
+import GameDetails from "./components/GameDetails";
 import Search from "./components/Search";
 
 toast.configure();
@@ -50,8 +53,20 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <NavBar setAuth={setAuth} isAuthenticated={isAuthenticated} />
         <div className="container">
           <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route
+              setAuth={setAuth}
+              isAuthenticated={isAuthenticated}
+              exact
+              path="/details/:game_slug"
+            >
+              <GameDetails />
+            </Route>
             <Route
               exact
               path="/login"

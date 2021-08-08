@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
+import GameDetails from "./GameDetails";
 
 class Search extends React.Component {
   token = null;
@@ -13,7 +14,7 @@ class Search extends React.Component {
     this.setState({
       query: value,
     });
-
+    console.log("the query is: ", value);
     this.search(value);
   };
 
@@ -37,18 +38,16 @@ class Search extends React.Component {
   render() {
     return (
       <>
-        <form>
+        <form className="form-inline my-2 my-lg-0 ">
           <input
+            className="form-control mr-sm-2 search-bar"
             type="text"
-            className="search-bar"
             placeholder="Search games..."
             onChange={(e) => this.onChange(e)}
           />
           <div className="searchResults">
             {this.state.games.map((game, index) => (
-              <Link to={`/${game.slug}`}>
-                <p key={index}>{game.name}</p>
-              </Link>
+              <Link to={`/details/${game.slug}`}>{game.name}</Link>
             ))}
           </div>
         </form>

@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import "../App.css";
+import Search from "./Search";
 
-const GameDetails = () => {
+const GameDetails = ({ setAuth, isAuthenticated }) => {
   const { game_slug } = useParams();
   const [game, setGame] = useState(null);
 
@@ -20,29 +22,39 @@ const GameDetails = () => {
   return (
     <>
       {!!game ? (
-        <div
-          style={{ backgroundImage: `url('${game.background_image}')` }}
-          className="backGroundOverlay"
-        >
-          <div className="gameDetails">
-            <p>{game.name}</p>
-            <p>Rating: {game.rating}</p>
-            <p>Metacritic Score: {game.metacritic}</p>
-            {/* {!!game.genres.length || game.genres.length !== undefined ? (
-            <p>{game.genres[0].name}</p>
-          ) : (
-            ""
-          )} */}
-            <p>{game.description_raw}</p>
-
-            <p>
+        <>
+          <div
+            style={{ backgroundImage: `url('${game.background_image}')` }}
+            className="backGroundOverlay"
+          >
+            <div className="gameDetails">
+              <p>{game.name}</p>
+              <p>Rating: {game.rating}</p>
+              {!!game.metacritic ? (
+                <p>Metacritic Score: {game.metacritic}</p>
+              ) : (
+                ""
+              )}
+              {!!game.genre ? <p>Genre: {game.genre}</p> : ""}
+              <p>Released: {game.released}</p>
               {game.developers.map((developer, index) => (
                 <p key={index}>{developer.name}</p>
               ))}
-            </p>
-            <p>{game.name}</p>
+              {!!isAuthenticated ? (
+                ""
+              ) : (
+                <div className="addButtons">
+                  <button className="btn btn-secondary btn-block btn-sm">
+                    Add to Backlog
+                  </button>
+                  <button className="btn btn-secondary btn-block btn-sm">
+                    Add to Favorites
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        </>
       ) : (
         <p>Getting game data...</p>
       )}

@@ -43,36 +43,38 @@ const Register = ({ setAuth }) => {
 
   return (
     <>
-      <h1 className="text-center my-5">Register</h1>
-      <form onSubmit={onSubmitForm}>
-        <input
-          className="form-control my-3"
-          type="text"
-          name="name"
-          placeholder="Create a username"
-          value={name}
-          onChange={(e) => onChange(e)}
-        />
-        <input
-          className="form-control my-3"
-          type="email"
-          name="email"
-          placeholder="Enter an email"
-          value={email}
-          onChange={(e) => onChange(e)}
-        />
-        <input
-          className="form-control my-3"
-          type="password"
-          name="password"
-          placeholder="Create a password"
-          value={password}
-          onChange={(e) => onChange(e)}
-        />
+      <div className="form container">
+        <h1 className="text-center mt-5">Register</h1>
+        <form onSubmit={onSubmitForm}>
+          <input
+            className="form-control my-3"
+            type="text"
+            name="name"
+            placeholder="Create a username"
+            value={name}
+            onChange={(e) => onChange(e)}
+          />
+          <input
+            className="form-control my-3"
+            type="email"
+            name="email"
+            placeholder="Enter an email"
+            value={email}
+            onChange={(e) => onChange(e)}
+          />
+          <input
+            className="form-control my-3"
+            type="password"
+            name="password"
+            placeholder="Create a password"
+            value={password}
+            onChange={(e) => onChange(e)}
+          />
 
-        <button className="btn btn-success btn-block">Submit</button>
-      </form>
-      <Link to="/login">Login</Link>
+          <button className="btn btn-success btn-block">Submit</button>
+        </form>
+        <Link to="/login">Login</Link>
+      </div>
     </>
   );
 };

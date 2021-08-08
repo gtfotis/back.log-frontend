@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import Backlog from "./Backlog";
 
 const Dashboard = ({ setAuth }) => {
   const [name, setName] = useState("");
@@ -10,30 +12,21 @@ const Dashboard = ({ setAuth }) => {
         method: "GET",
         headers: { token: localStorage.token },
       });
-
+      console.log("response is: ", response);
       const parseRes = await response.json();
-
+      console.log(parseRes);
       setName(parseRes.user_name);
     } catch (err) {
       console.error(err.message);
     }
   }
 
-  const logout = (e) => {
-    e.preventDefault();
-    localStorage.removeItem("token");
-    setAuth(false);
-    toast.success("See you next time!");
-  };
   useEffect(() => {
     getName();
   }, []);
   return (
     <>
-      <h1>Dashboard {name}</h1>
-      <button className="btn btn-primary" onClick={(e) => logout(e)}>
-        Logout
-      </button>
+      <Backlog />
     </>
   );
 };

@@ -41,27 +41,29 @@ const Login = ({ setAuth }) => {
   };
   return (
     <>
-      <h1 className="text-center mt-5">Login</h1>
-      <form onSubmit={onSubmitForm}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter your email"
-          className="form-control my-3"
-          value={email}
-          onChange={(e) => onChange(e)}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter your password"
-          className="form-control my-3"
-          value={password}
-          onChange={(e) => onChange(e)}
-        />
-        <button className="btn btn-success btn-block">Submit</button>
-      </form>
-      <Link to="/register">Register</Link>
+      <div className="form container">
+        <h1 className="text-center mt-5">Login</h1>
+        <form onSubmit={onSubmitForm}>
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            className="form-control my-3"
+            value={email}
+            onChange={(e) => onChange(e)}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            className="form-control my-3"
+            value={password}
+            onChange={(e) => onChange(e)}
+          />
+          <button className="btn btn-success btn-block">Submit</button>
+        </form>
+        <Link to="/register">Register</Link>
+      </div>
     </>
   );
 };
