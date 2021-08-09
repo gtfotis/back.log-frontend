@@ -37,7 +37,7 @@ const GameList = () => {
               {games.map((game, index) => (
                 <>
                   <li key={index}>
-                    <Link key={game.name} to={`/details/${game.slug}`}>
+                    <Link key={game} to={`/details/${game.slug}`}>
                       {game.name}
                     </Link>
                   </li>

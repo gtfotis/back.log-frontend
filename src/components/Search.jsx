@@ -46,7 +46,9 @@ class Search extends React.Component {
           />
           <div className="searchResults">
             {this.state.games.map((game, index) => (
-              <Link to={`/details/${game.slug}`}>{game.name}</Link>
+              <Link key={index} to={`/details/${game.slug}`}>
+                {game.name}
+              </Link>
             ))}
           </div>
         </form>

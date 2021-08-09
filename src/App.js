@@ -53,56 +53,58 @@ function App() {
       <div className="App">
         <Router>
           <NavBar setAuth={setAuth} isAuthenticated={isAuthenticated} />
-          <div className="container">
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route
-                setAuth={setAuth}
-                isAuthenticated={isAuthenticated}
-                exact
-                path="/details/:game_slug"
-              >
-                <GameDetails
+          <div className="backgroundOverlay2">
+            <div className="container">
+              <Switch>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route
                   setAuth={setAuth}
                   isAuthenticated={isAuthenticated}
+                  exact
+                  path="/details/:game_slug"
+                >
+                  <GameDetails
+                    setAuth={setAuth}
+                    isAuthenticated={isAuthenticated}
+                  />
+                </Route>
+                <Route
+                  exact
+                  path="/login"
+                  render={(props) =>
+                    !isAuthenticated ? (
+                      <Login {...props} setAuth={setAuth} />
+                    ) : (
+                      <Redirect to="/dashboard" />
+                    )
+                  }
                 />
-              </Route>
-              <Route
-                exact
-                path="/login"
-                render={(props) =>
-                  !isAuthenticated ? (
-                    <Login {...props} setAuth={setAuth} />
-                  ) : (
-                    <Redirect to="/dashboard" />
-                  )
-                }
-              />
-              <Route
-                exact
-                path="/register"
-                render={(props) =>
-                  !isAuthenticated ? (
-                    <Register {...props} setAuth={setAuth} />
-                  ) : (
-                    <Redirect to="/login" />
-                  )
-                }
-              />
-              <Route
-                exact
-                path="/dashboard"
-                render={(props) =>
-                  isAuthenticated ? (
-                    <Dashboard {...props} setAuth={setAuth} />
-                  ) : (
-                    <Redirect to="/login" />
-                  )
-                }
-              />
-            </Switch>
+                <Route
+                  exact
+                  path="/register"
+                  render={(props) =>
+                    !isAuthenticated ? (
+                      <Register {...props} setAuth={setAuth} />
+                    ) : (
+                      <Redirect to="/login" />
+                    )
+                  }
+                />
+                <Route
+                  exact
+                  path="/dashboard"
+                  render={(props) =>
+                    isAuthenticated ? (
+                      <Dashboard {...props} setAuth={setAuth} />
+                    ) : (
+                      <Redirect to="/login" />
+                    )
+                  }
+                />
+              </Switch>
+            </div>
           </div>
         </Router>
       </div>
@@ -120,7 +122,7 @@ function App() {
               <img
                 className="linkedinlogo"
                 alt="linkedin logo"
-                src="./linkedin-logo.png"
+                src="../linkedin-logo.png"
                 width="40px"
               ></img>
             </a>{" "}
@@ -129,7 +131,7 @@ function App() {
               <img
                 className="githublogo"
                 alt="github logo"
-                src="./github-logo.png"
+                src="../github-logo.png"
                 width="40px"
               ></img>
             </a>

@@ -3,7 +3,6 @@ import Backlog from "./Backlog";
 
 const Dashboard = ({ setAuth }) => {
   const [name, setName] = useState("");
-
   async function getName() {
     try {
       const response = await fetch("http://localhost:5000/dashboard", {
@@ -17,7 +16,7 @@ const Dashboard = ({ setAuth }) => {
       console.error(err.message);
     }
   }
-
+  console.log(name);
   useEffect(() => {
     getName();
   }, []);

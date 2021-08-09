@@ -11,7 +11,6 @@ const NavBar = ({ setAuth, isAuthenticated }) => {
     setAuth(false);
     toast.success("See you next time!");
   };
-
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
@@ -21,7 +20,7 @@ const NavBar = ({ setAuth, isAuthenticated }) => {
           </span>
           <span className="log">log</span>
           <span className="parenthesis">(</span>
-          <span className="face"> ' u '</span>
+          <span className="face"></span>
           <span className="parenthesis">)</span>
         </a>
         <button

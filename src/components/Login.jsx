@@ -61,9 +61,9 @@ const Login = ({ setAuth }) => {
             onChange={(e) => onChange(e)}
           />
           <div className="form-check">
-            Remember me:
+            Remember me
             <input type="checkbox" value="remember-me" id="remember_me" />
-            <label class="checkbox"></label>
+            <label className="checkbox"></label>
           </div>
           <br />
           <button className="btn btn-secondary btn-block">Submit</button>

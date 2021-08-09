@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "../App.css";
-import Search from "./Search";
+import GetScreenshots from "./GetScreenshots";
 
 const GameDetails = ({ setAuth, isAuthenticated }) => {
   const { game_slug } = useParams();
@@ -19,6 +19,48 @@ const GameDetails = ({ setAuth, isAuthenticated }) => {
     })();
   }, [setGame, game_slug]);
 
+  var pad = function (num) {
+    return ("00" + num).slice(-2);
+  };
+  var date;
+  date = new Date();
+  date =
+    date.getUTCFullYear() +
+    "-" +
+    pad(date.getUTCMonth() + 1) +
+    "-" +
+    pad(date.getUTCDate()) +
+    " " +
+    pad(date.getUTCHours()) +
+    ":" +
+    pad(date.getUTCMinutes()) +
+    ":" +
+    pad(date.getUTCSeconds());
+
+  const onSubmitBacklog = async (e) => {
+    e.preventDefault();
+
+    try {
+      const body = {
+        game_id: game.id,
+        user_id: "e5daae2d-cfa2-49ac-a9f6-203ec4a9d783",
+        date: date,
+        game_name: game.name,
+        game_image: game.background_image_additional,
+      };
+      console.log("the body is: ", body);
+      const response = await fetch("http://localhost:5000/backlog", {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      console.log("the response is: ", response);
+    } catch (err) {
+      toast.error("This game is already in your backlog!");
+      console.error(err.message);
+    }
+  };
+
   return (
     <>
       {!!game ? (
@@ -29,6 +71,7 @@ const GameDetails = ({ setAuth, isAuthenticated }) => {
           >
             <div className="gameDetails">
               <p>{game.name}</p>
+              <GetScreenshots />
               <p>Rating: {game.rating}</p>
               {!!game.metacritic ? (
                 <p>Metacritic Score: {game.metacritic}</p>
@@ -36,13 +79,27 @@ const GameDetails = ({ setAuth, isAuthenticated }) => {
                 ""
               )}
               {!!game.genre ? <p>Genre: {game.genre}</p> : ""}
-              <p>Released: {game.released}</p>
-              {game.developers.map((developer, index) => (
-                <p key={index}>{developer.name}</p>
-              ))}
+              <p>
+                Released: {game.released !== null ? `${game.released}` : "TBA"}
+              </p>{" "}
+              {game.developers > 0 ? (
+                <p>Developed by: {game.developers[0].name}</p>
+              ) : (
+                ""
+              )}
+              {game.website !== "" ? (
+                <p>
+                  <a href={`${game.website}`}>Website</a>
+                </p>
+              ) : (
+                ""
+              )}
               {!!isAuthenticated ? (
                 <div className="addButtons">
-                  <button className="btn btn-secondary btn-block btn-sm">
+                  <button
+                    onClick={onSubmitBacklog}
+                    className="btn btn-secondary btn-block btn-sm"
+                  >
                     Add to Backlog
                   </button>
                 </div>

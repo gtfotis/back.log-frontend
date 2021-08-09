@@ -11,15 +11,17 @@ const Backlog = ({ setAuth }) => {
       });
       console.log("backlog token is: ", localStorage.token);
       const backlog = await response.json();
-      // console.log("backlog response: ", backlog);
+      console.log("backlog response: ", backlog);
       setBacklog(backlog);
     } catch (err) {
       console.error(err.message);
     }
   };
+
   useEffect(() => {
     getBacklog();
   }, []);
+
   return (
     <div className="backlogDiv">
       <h2>my backlog</h2>
@@ -28,8 +30,16 @@ const Backlog = ({ setAuth }) => {
           <ul>
             {backlog.map((game, index) => (
               <li key={index}>
-                <Link to={`/details/${game.game_id}`}>{game.game_id}</Link>,
-                added: {game.date_added}
+                <Link to={`/details/${game.game_id}`}>
+                  <img
+                    alt={`${game.game_id}`}
+                    width="150px"
+                    height="100px"
+                    src={game.game_image}
+                  ></img>
+                  {game.game_name}
+                </Link>
+                , added: {game.date_added.substring(0, 10)}
               </li>
             ))}
           </ul>
