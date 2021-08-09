@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 import Backlog from "./Backlog";
 
 const Dashboard = ({ setAuth }) => {
@@ -12,9 +10,8 @@ const Dashboard = ({ setAuth }) => {
         method: "GET",
         headers: { token: localStorage.token },
       });
-      console.log("response is: ", response);
+      console.log("token is: ", localStorage.token);
       const parseRes = await response.json();
-      console.log(parseRes);
       setName(parseRes.user_name);
     } catch (err) {
       console.error(err.message);

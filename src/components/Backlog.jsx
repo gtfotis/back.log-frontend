@@ -9,9 +9,9 @@ const Backlog = ({ setAuth }) => {
         method: "GET",
         headers: { token: localStorage.token },
       });
-      console.log("backlose response is: ", response.results);
+      console.log("backlog token is: ", localStorage.token);
       const backlog = await response.json();
-      console.log("backlog response: ", backlog);
+      // console.log("backlog response: ", backlog);
       setBacklog(backlog);
     } catch (err) {
       console.error(err.message);

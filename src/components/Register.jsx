@@ -71,9 +71,11 @@ const Register = ({ setAuth }) => {
             onChange={(e) => onChange(e)}
           />
 
-          <button className="btn btn-success btn-block">Submit</button>
+          <button className="btn btn-secondary btn-block">Submit</button>
         </form>
-        <Link to="/login">Login</Link>
+        <br />
+        <Link to="/login">Click here to login ( ´◡` )</Link>
+        <br />
       </div>
     </>
   );

@@ -7,7 +7,7 @@ import Search from "./Search";
 const GameDetails = ({ setAuth, isAuthenticated }) => {
   const { game_slug } = useParams();
   const [game, setGame] = useState(null);
-
+  console.log("authentication is: ", isAuthenticated);
   useEffect(() => {
     (async () => {
       const api_key = process.env.REACT_APP_API_KEY;
@@ -41,16 +41,13 @@ const GameDetails = ({ setAuth, isAuthenticated }) => {
                 <p key={index}>{developer.name}</p>
               ))}
               {!!isAuthenticated ? (
-                ""
-              ) : (
                 <div className="addButtons">
                   <button className="btn btn-secondary btn-block btn-sm">
                     Add to Backlog
                   </button>
-                  <button className="btn btn-secondary btn-block btn-sm">
-                    Add to Favorites
-                  </button>
                 </div>
+              ) : (
+                ""
               )}
             </div>
           </div>

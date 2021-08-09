@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: Consolas, "Courier New", monospace;
 }
 .container {
   display: flex;
@@ -28,8 +29,11 @@
   color: white;
 }
 
+#remember_me {
+  width: 50px;
+}
 .App-link {
-  color: #61dafb;
+  color: #b27a57;
 }
 
 @keyframes App-logo-spin {
@@ -75,7 +79,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  background-color: gray;
+  background-color: rgb(33, 37, 41);
   width: auto;
   overflow-x: auto;
   overflow-y: hidden;
@@ -83,8 +87,8 @@
 
 .form.container {
   margin-top: 25%;
-  color: whitesmoke;
-  background: #494f5a;
+  color: rgba(255, 255, 255, 0.55);
+  background: rgb(33, 37, 41);
   width: 400px;
   border-radius: 15px;
   flex-direction: column;
@@ -92,10 +96,15 @@
 
 body {
   background-color: #282c34;
+  -ms-overflow-style: none;
+  overflow-y: scroll;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
 .explore {
-  background-color: whitesmoke;
+  background-color: rgba(175, 174, 174, 0.89);
   border-radius: 15px;
   width: 300px;
 }
@@ -124,3 +133,138 @@ ul {
 .gameDetails {
   box-shadow: 2px 2px #afafaf;
 }
+
+a:hover {
+  color: #b27a57;
+}
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background-color: rgb(33, 37, 41);
+  z-index: 1;
+  margin-bottom: 0px !important;
+}
+.githublogo {
+  margin: 15px;
+}
+
+.linkedinlogo {
+  margin: 15px;
+}
+
+a {
+  color: rgba(255, 255, 255, 0.55);
+  margin: 1px;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+}
+
+input {
+  background-color: rgb(33, 37, 41);
+  color: rgba(255, 255, 255, 0.55);
+}
+
+input.form-control.mr-sm-2.search-bar,
+.form-control.my-3 {
+  background-color: rgb(33, 37, 41);
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.back {
+  color: #67313d;
+}
+
+.period {
+  color: #afc1c3;
+}
+
+.log {
+  color: #347b7f;
+}
+
+.parenthesis {
+  color: #84bcdd;
+}
+
+.face {
+  color: #b27a57;
+}
+
+/* pagination  */
+
+/* .heading {
+  font-size: 30px;
+  padding: 16px 0;
+  color: #444;
+  text-align: center;
+} */
+/*Container*/
+/* .container {
+  margin: 36px auto;
+} */
+
+.container input {
+  width: 100%;
+
+  font-style: italic;
+  color: #444;
+}
+
+/* Results */
+/* 
+.results-container {
+  display: flex;
+  flex-flow: wrap;
+}
+.result-items {
+  position: relative;
+  padding: 16px;
+  border: 1px solid #898989;
+  margin: 16px;
+  text-align: center;
+  min-width: 200px;
+  text-decoration: none;
+  box-shadow: 2px 2px 2px #898989;
+}
+.image-username {
+  color: coral;
+  font-size: 18px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 5px 10px;
+}
+.image {
+  width: 100%;
+  height: 200px;
+}
+.image-wrapper {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100%;
+  justify-content: center;
+} */
+/*Loader*/
+/* .search-loading {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+} */
+/*Show and hide*/
+/* .show {
+  display: inline-block;
+}
+.hide {
+  display: none;
+} */

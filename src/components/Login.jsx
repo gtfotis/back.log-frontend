@@ -60,9 +60,17 @@ const Login = ({ setAuth }) => {
             value={password}
             onChange={(e) => onChange(e)}
           />
-          <button className="btn btn-success btn-block">Submit</button>
+          <div className="form-check">
+            Remember me:
+            <input type="checkbox" value="remember-me" id="remember_me" />
+            <label class="checkbox"></label>
+          </div>
+          <br />
+          <button className="btn btn-secondary btn-block">Submit</button>
         </form>
-        <Link to="/register">Register</Link>
+        <br />
+        <Link to="/register">Click here to register! ( °ワ°)</Link>
+        <br />
       </div>
     </>
   );

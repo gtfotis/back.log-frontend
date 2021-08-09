@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify";
 import Search from "./Search";
+import PaginationSearch from "./PaginationSearch";
 
 const NavBar = ({ setAuth, isAuthenticated }) => {
   const logout = (e) => {
@@ -15,7 +16,13 @@ const NavBar = ({ setAuth, isAuthenticated }) => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
-          back.log( ' u ')
+          <span className="back">
+            back<span className="period">.</span>
+          </span>
+          <span className="log">log</span>
+          <span className="parenthesis">(</span>
+          <span className="face"> ' u '</span>
+          <span className="parenthesis">)</span>
         </a>
         <button
           className="navbar-toggler"

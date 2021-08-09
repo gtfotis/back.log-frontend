@@ -37,11 +37,10 @@ const GameList = () => {
               {games.map((game, index) => (
                 <>
                   <li key={index}>
-                    <Link to={`/details/${game.slug}`}>{game.name}</Link>
+                    <Link key={game.name} to={`/details/${game.slug}`}>
+                      {game.name}
+                    </Link>
                   </li>
-                  <Route exact path={`/details/${game.slug}`}>
-                    <GameDetails />
-                  </Route>
                 </>
               ))}
             </ul>
