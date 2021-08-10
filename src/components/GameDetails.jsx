@@ -7,17 +7,34 @@ import GetScreenshots from "./GetScreenshots";
 const GameDetails = ({ setAuth, isAuthenticated }) => {
   const { game_slug } = useParams();
   const [game, setGame] = useState(null);
-  console.log("authentication is: ", isAuthenticated);
+
   useEffect(() => {
     (async () => {
       const api_key = process.env.REACT_APP_API_KEY;
       const url = `https://api.rawg.io/api/games/${game_slug}?key=${api_key}`;
       const game = await fetch(url).then((res) => res.json());
       setGame(game);
-      console.log("the response is: ", game);
-      console.log("background image: ", game.background_image);
     })();
   }, [setGame, game_slug]);
+
+  const [user_id, setID] = useState("");
+  async function getID() {
+    try {
+      const response = await fetch("http://localhost:5000/dashboard", {
+        method: "GET",
+        headers: { token: localStorage.token },
+      });
+      const parseRes = await response.json();
+      setID(parseRes.user_id);
+      console.log("the parse res is:, ", parseRes);
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+
+  useEffect(() => {
+    getID();
+  }, []);
 
   var pad = function (num) {
     return ("00" + num).slice(-2);
@@ -39,25 +56,44 @@ const GameDetails = ({ setAuth, isAuthenticated }) => {
 
   const onSubmitBacklog = async (e) => {
     e.preventDefault();
-
     try {
       const body = {
         game_id: game.id,
-        user_id: "e5daae2d-cfa2-49ac-a9f6-203ec4a9d783",
+        user_id: user_id,
         date: date,
         game_name: game.name,
         game_image: game.background_image_additional,
       };
-      console.log("the body is: ", body);
       const response = await fetch("http://localhost:5000/backlog", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(body),
       });
-      console.log("the response is: ", response);
+
+      const parseRes = await response.json();
+
+      toast.success(parseRes);
     } catch (err) {
-      toast.error("This game is already in your backlog!");
       console.error(err.message);
+    }
+  };
+
+  const onRemoveBacklog = async (e) => {
+    e.preventDefault(e);
+    try {
+      const gameToRemove = {
+        user_id: user_id,
+        game_id: game.id,
+      };
+      const response = await fetch("http://localhost:5000/backlog/delete", {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(gameToRemove),
+      });
+      console.log("the response is: ", response);
+      toast.success(`${game.name} was removed from your backlog!`);
+    } catch (err) {
+      toast.error(err.message);
     }
   };
 
@@ -74,7 +110,12 @@ const GameDetails = ({ setAuth, isAuthenticated }) => {
               <GetScreenshots />
               <p>Rating: {game.rating}</p>
               {!!game.metacritic ? (
-                <p>Metacritic Score: {game.metacritic}</p>
+                <p>
+                  Metacritic Score:{" "}
+                  <a alt="metacritic link" href={`${game.metacritic_url}`}>
+                    {game.metacritic}
+                  </a>
+                </p>
               ) : (
                 ""
               )}
@@ -101,6 +142,12 @@ const GameDetails = ({ setAuth, isAuthenticated }) => {
                     className="btn btn-secondary btn-block btn-sm"
                   >
                     Add to Backlog
+                  </button>{" "}
+                  <button
+                    onClick={onRemoveBacklog}
+                    className="btn btn-secondary btn-block btn-sm"
+                  >
+                    Remove from Backlog
                   </button>
                 </div>
               ) : (

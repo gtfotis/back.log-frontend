@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Backlog from "./Backlog";
 
-const Dashboard = ({ setAuth }) => {
+const Dashboard = ({ setAuth, isAuthenticated }) => {
   const [name, setName] = useState("");
   async function getName() {
     try {
@@ -9,20 +9,19 @@ const Dashboard = ({ setAuth }) => {
         method: "GET",
         headers: { token: localStorage.token },
       });
-      console.log("token is: ", localStorage.token);
       const parseRes = await response.json();
       setName(parseRes.user_name);
     } catch (err) {
       console.error(err.message);
     }
   }
-  console.log(name);
+
   useEffect(() => {
     getName();
   }, []);
   return (
     <>
-      <Backlog />
+      <Backlog setAuth={setAuth} isAuthenticated={isAuthenticated} />
     </>
   );
 };
