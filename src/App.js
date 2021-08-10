@@ -19,6 +19,7 @@ import Register from "./components/Register";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import GameDetails from "./components/GameDetails";
+import Search from "./components/Search";
 
 toast.configure();
 
@@ -54,6 +55,7 @@ function App() {
         <Router>
           <NavBar setAuth={setAuth} isAuthenticated={isAuthenticated} />
           <div className="backgroundOverlay2">
+            <Search />
             <div className="container">
               <Switch>
                 <Route exact path="/">
@@ -109,38 +111,36 @@ function App() {
         </Router>
       </div>
       <footer className="footer">
-        <div className="container">
-          <span className="text-muted">
-            <a className="apiLink" href="https://otis.codes">
-              otis
-            </a>{" "}
-            |{" "}
-            <a className="apiLink" href="https://otis.codes">
-              codes
-            </a>
-            <a href="https://www.linkedin.com/in/otiswilcox/">
-              <img
-                className="linkedinlogo"
-                alt="linkedin logo"
-                src="../linkedin-logo.png"
-                width="40px"
-              ></img>
-            </a>{" "}
-            |
-            <a href="https://github.com/gtfotis">
-              <img
-                className="githublogo"
-                alt="github logo"
-                src="../github-logo.png"
-                width="40px"
-              ></img>
-            </a>
-            API powered by:{" "}
-            <a className="apiLink" href="https://api.rawg.io/docs/">
-              RAWG
-            </a>
-          </span>
-        </div>
+        <span className="text-muted">
+          <a className="apiLink" href="https://otis.codes">
+            otis
+          </a>{" "}
+          |{" "}
+          <a className="apiLink" href="https://otis.codes">
+            codes
+          </a>
+          <a href="https://www.linkedin.com/in/otiswilcox/">
+            <img
+              className="linkedinlogo"
+              alt="linkedin logo"
+              src="../linkedin-logo.png"
+              width="40px"
+            ></img>
+          </a>{" "}
+          |
+          <a href="https://github.com/gtfotis">
+            <img
+              className="githublogo"
+              alt="github logo"
+              src="../github-logo.png"
+              width="40px"
+            ></img>
+          </a>
+          API powered by:{" "}
+          <a className="apiLink" href="https://api.rawg.io/docs/">
+            RAWG
+          </a>
+        </span>
       </footer>
     </>
   );

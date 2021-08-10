@@ -26,7 +26,6 @@ const GameDetails = ({ setAuth, isAuthenticated }) => {
       });
       const parseRes = await response.json();
       setID(parseRes.user_id);
-      console.log("the parse res is:, ", parseRes);
     } catch (err) {
       console.error(err.message);
     }
@@ -90,7 +89,6 @@ const GameDetails = ({ setAuth, isAuthenticated }) => {
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(gameToRemove),
       });
-      console.log("the response is: ", response);
       toast.success(`${game.name} was removed from your backlog!`);
     } catch (err) {
       toast.error(err.message);

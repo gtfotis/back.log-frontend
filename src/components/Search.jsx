@@ -3,10 +3,22 @@ import { Link, Route } from "react-router-dom";
 
 class Search extends React.Component {
   token = null;
-  state = {
-    query: "",
-    games: [],
-  };
+  state = {};
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isVisible: false,
+      query: "",
+      games: [],
+    };
+    this.onToggle = this.onToggle.bind(this);
+  }
+
+  onToggle(e) {
+    this.setState({ isVisible: !this.state.isVisible });
+  }
 
   onChange = (e) => {
     const { value } = e.target;
@@ -28,8 +40,6 @@ class Search extends React.Component {
       .then((data) => {
         if (this.token === token) {
           this.setState({ games: data.results });
-          console.log("search results are: ", data.results);
-          console.log("data is: ", this.state.games);
         }
       });
   };
@@ -37,13 +47,15 @@ class Search extends React.Component {
   render() {
     return (
       <>
-        <form className="form-inline my-2 my-lg-0 ">
+        <form onClick={this.onToggle} className="form-inline my-2 my-lg-0 ">
           <input
             className="form-control mr-sm-2 search-bar"
             type="text"
             placeholder="Search games..."
             onChange={(e) => this.onChange(e)}
           />
+        </form>
+        {this.state.isVisible && (
           <div className="searchResults">
             {this.state.games.map((game, index) => (
               <Link key={index} to={`/details/${game.slug}`}>
@@ -51,7 +63,7 @@ class Search extends React.Component {
               </Link>
             ))}
           </div>
-        </form>
+        )}
       </>
     );
   }

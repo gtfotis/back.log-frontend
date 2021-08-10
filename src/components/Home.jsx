@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <>
       <GameList />
-      <div className="explore">Stuff</div>
+      <div className="explore">Need help organizing your backlog?</div>
       <div className="explore">More stuff</div>
     </>
   );

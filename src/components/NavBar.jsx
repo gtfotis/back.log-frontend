@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify";
 import Search from "./Search";
-import PaginationSearch from "./PaginationSearch";
 
 const NavBar = ({ setAuth, isAuthenticated }) => {
   const logout = (e) => {
@@ -82,9 +81,7 @@ const NavBar = ({ setAuth, isAuthenticated }) => {
               </>
             )}
           </ul>
-          <div>
-            <Search />
-          </div>
+          <div></div>
         </div>
       </div>
     </nav>

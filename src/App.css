@@ -61,7 +61,7 @@
 .backgroundOverlay2 {
   background-size: cover;
   position: relative;
-  /* z-index: -1; */
+  z-index: 0;
   top: 0;
   bottom: 0;
   right: 0;
@@ -89,14 +89,18 @@
 }
 
 .searchResults {
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
-  background-color: rgb(33, 37, 41);
-  width: auto;
+  flex-direction: column;
+  background-color: rgba(33, 37, 41, 0.863);
+  width: 9%;
   overflow-x: auto;
   overflow-y: hidden;
+  margin-top: 1.5%;
+  margin-left: 10px;
+  border-radius: 15px;
 }
 
 .form.container {
@@ -121,11 +125,12 @@ body::-webkit-scrollbar {
   display: none;
 }
 .explore {
-  background-color: rgba(175, 174, 174, 0.89);
+  background-color: rgba(240, 239, 239, 0.89);
   border-radius: 15px;
   width: 300px;
 }
-
+.card {
+}
 ul {
   list-style-type: none;
 }
@@ -144,13 +149,18 @@ ul {
   font-size: 18px;
   padding: 2%;
 }
-
+.carousel-active {
+  display: flex;
+}
 .backlogDiv,
 .explore,
 .gameDetails {
   box-shadow: 2px 2px #afafaf;
 }
 
+nav {
+  z-index: 1 !important;
+}
 a:hover {
   color: #b27a57;
 }
@@ -187,6 +197,11 @@ input {
   color: rgba(255, 255, 255, 0.55);
 }
 
+input.form-control.mr-sm-2.search-bar {
+  position: absolute;
+  width: 10.5%;
+  min-width: 150px;
+}
 input.form-control.mr-sm-2.search-bar,
 .form-control.my-3 {
   background-color: rgb(33, 37, 41);
@@ -218,6 +233,49 @@ input.form-control.mr-sm-2.search-bar,
 }
 .face:hover:before {
   content: " ° ワ °";
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }
 
 /* pagination  */
