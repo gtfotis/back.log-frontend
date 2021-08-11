@@ -5,13 +5,18 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
+.text-muted {
+  display: flex;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -101,11 +106,18 @@
   margin-top: 1.5%;
   margin-left: 10px;
   border-radius: 15px;
+  z-index: 1;
 }
-
+html {
+  scroll-behavior: smooth;
+}
+.backlogstuff {
+  margin-top: 0;
+  margin-bottom: 10%;
+}
 .form.container {
   color: rgba(255, 255, 255, 0.55);
-  background: rgb(33, 37, 41);
+  background: rgb(33 37 41 / 78%);
   width: 400px;
   border-radius: 15px;
   flex-direction: column;
@@ -121,15 +133,26 @@ body {
   width: auto;
 }
 
+div::-webkit-scrollbar {
+  display: none;
+}
+
 body::-webkit-scrollbar {
   display: none;
+}
+
+.backlogstuff {
 }
 .explore {
   background-color: rgba(240, 239, 239, 0.89);
   border-radius: 15px;
   width: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
-.card {
+.card-img-top {
+  width: 250;
+  height: 250px;
 }
 ul {
   list-style-type: none;

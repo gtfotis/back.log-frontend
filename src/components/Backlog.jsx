@@ -45,46 +45,44 @@ const Backlog = ({ setAuth, isAuthenticated }) => {
 
   return (
     <>
-      <div className="backlogDiv">
-        {!!backlog.length ? (
-          <>
-            {backlog.map((game, index) => (
-              <>
-                <div className="card" width="18rem">
-                  <Link to={`/details/${game.game_id}`}>
-                    <img
-                      width="100px"
-                      height="150px"
-                      className="card-img-top"
-                      src={`${game.game_image}`}
-                      alt={`${game.game_name}`}
-                    />
-                  </Link>
-                  <div className="card-body">
-                    <h5 className="card-title">{game.game_name}</h5>
-                    <p className="card-text">
-                      added: {game.date_added.substring(0, 10)}
-                    </p>
-                    <button
-                      type="submit"
-                      onClick={onRemoveBacklog}
-                      className="btn btn-secondary"
-                    >
-                      Remove from backlog
-                    </button>
+      <div className="explore">Total games in backlog: {backlog.length}</div>
+      <div className="backlogstuff ">
+        <div className="row">
+          {!!backlog.length ? (
+            <>
+              {backlog.map((game, index) => (
+                <>
+                  <div className="card  col-6 col-sm-3" width="18rem">
+                    <Link to={`/details/${game.game_id}`}>
+                      <img
+                        className="card-img-top"
+                        src={`${game.game_image}`}
+                        alt={`${game.game_name}`}
+                      />
+                    </Link>
+                    <div className="card-body">
+                      <h5 className="card-title">{game.game_name}</h5>
+                      <p className="card-text">
+                        added: {game.date_added.substring(0, 10)}
+                      </p>
+                      <button
+                        type="submit"
+                        onClick={onRemoveBacklog}
+                        className="btn btn-secondary"
+                      >
+                        Remove from backlog
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </>
-            ))}
-            <div className="explore">
-              Total games in backlog: {backlog.length}
+                </>
+              ))}
+            </>
+          ) : (
+            <div className="backlogDiv">
+              You haven't added any games to your backlog yet!
             </div>
-          </>
-        ) : (
-          <div className="backlogDiv">
-            You haven't added any games to your backlog yet!
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </>
   );

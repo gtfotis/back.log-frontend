@@ -5,8 +5,10 @@ const Home = () => {
   return (
     <>
       <GameList />
-      <div className="explore">Need help organizing your backlog?</div>
-      <div className="explore">More stuff</div>
+      <div className="explore">
+        Does your game stack tend to overflow? We've got you covered on your
+        backlog.
+      </div>
     </>
   );
 };
